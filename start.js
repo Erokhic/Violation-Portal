@@ -21,9 +21,15 @@ const ex_btn = document.querySelector('.ex-btn')
 
 let users = JSON.parse(localStorage.getItem('users')) || []
 let flag = true
-authorization_form.style.display = 'none'
-reg.reset()
 
+
+if (authorization_form) {
+        authorization_form.style.display = 'none'
+    }
+     
+if(reg){
+       reg.reset() 
+    }
 
 
 if (ex_btn) {
@@ -31,6 +37,12 @@ if (ex_btn) {
         registration_form.style.display = ''
         authorization_form.style.display = 'none'
         reg.reset()
+        authZ_login.style.borderColor = ''
+        authZ_login.style.backgroundColor = ''
+        authZ_password.style.borderColor = ''
+        authZ_password.style.backgroundColor = ''
+        authZ_login.value = ''
+        authZ_password.value = ''
     })
 }
 
@@ -44,9 +56,15 @@ if (next_btn) {
     })
 }
 
-reg_btn.addEventListener('click', (e) => {
+if(reg_btn) {
+   reg_btn.addEventListener('click', (e) => {
     e.preventDefault()
     flag = true
+       
+if (container_statements) {
+            container_statements.style.display = 'none'
+        }
+
 
     if (reg_login.value.trim() === '') {
         reg_login.style.borderColor = 'red'
@@ -83,10 +101,11 @@ reg_btn.addEventListener('click', (e) => {
         reg_tel.style.borderColor = 'red'
         reg_tel.style.backgroundColor = 'rgb(255, 171, 171)'
         flag = false
-    } else if (reg_tel.value.length !== 11) {
+    } else if (reg_tel.value.replace(/\D/g, '').length !== 11) {
         alert('Номер должен состоять из 11 цифр')
         reg_tel.style.borderColor = 'red'
         reg_tel.style.backgroundColor = 'rgb(255, 171, 171)'
+        flag = false
 
     } else {
         reg_tel.style.borderColor = 'pink'
@@ -97,10 +116,10 @@ reg_btn.addEventListener('click', (e) => {
         reg_email.style.borderColor = 'red'
         reg_email.style.backgroundColor = 'rgb(255, 171, 171)'
         flag = false
-    }else if (!reg_email.value.includes('@')) {
-        alert('Введите правильную почту')
+    } else if (!reg_email.value.includes('@')) {
+        alert('Введите правильную почту, используя спецзнак (@)')
         flag = false
-    }else {
+    } else {
         reg_email.style.borderColor = 'pink'
     }
 
@@ -110,6 +129,7 @@ reg_btn.addEventListener('click', (e) => {
         console.log('Объект не создан');
         return
     } else {
+        alert(reg_fio.value.trim() + ' ,Вы зарегистрированы!')
         const user = {
             login: reg_login.value.trim(),
             password: reg_password.value.trim(),
@@ -120,6 +140,8 @@ reg_btn.addEventListener('click', (e) => {
         const uniq = users.some(u => u.login === reg_login.value.trim())
         if (uniq) {
             alert('Пользователь с таким логином уже существует')
+            reg_login.style.borderColor = 'red'
+            reg_login.style.backgroundColor = 'rgb(255, 171, 171)'
             return
         }
         users.push(user)
@@ -140,10 +162,12 @@ reg_btn.addEventListener('click', (e) => {
         authZ_password.style.backgroundColor = ''
     }
 
-})
+}) 
+}
 
 
-authZ_btn.addEventListener('click', (e) => {
+if (authZ_btn) {
+    authZ_btn.addEventListener('click', (e) => {
     e.preventDefault()
     flag = true
 
@@ -179,18 +203,36 @@ authZ_btn.addEventListener('click', (e) => {
             authZ_login.style.backgroundColor = ''
             authZ_password.style.borderColor = ''
             authZ_password.style.backgroundColor = ''
-            localStorage.setItem('Useer', JSON.stringify(foundUser))
+
+
+            localStorage.setItem('currentUser', JSON.stringify(foundUser))
+
         }
     }
-
-
 
     if (flag === false) {
         console.log('Объект не создан');
 
     } else {
-        registration_form.style.display = 'none'
-        authorization_form.style.display = 'none'
-        alert('Успешная авторизация')
+         if (registration_form) registration_form.style.display = 'none'
+        if (authorization_form) authorization_form.style.display = 'none'
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        if (currentUser) {
+            alert(currentUser.fio + ' , вы успешно авторизовались!')
+        }
+
     }
 })
+}
+
+
+
+
+
+
+
+
+
+
+
