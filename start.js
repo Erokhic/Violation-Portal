@@ -61,9 +61,6 @@ if(reg_btn) {
     e.preventDefault()
     flag = true
        
-if (container_statements) {
-            container_statements.style.display = 'none'
-        }
 
 
     if (reg_login.value.trim() === '') {
@@ -220,7 +217,9 @@ if (authZ_btn) {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'))
         if (currentUser) {
             alert(currentUser.fio + ' , вы успешно авторизовались!')
+            window.location.href = 'application_page.html'
         }
+
 
     }
 })
