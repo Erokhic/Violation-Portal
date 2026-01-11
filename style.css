@@ -1,34 +1,253 @@
-*{
+* {
+    font-family: Arial, sans-serif;
+}
+
+
+.index {
     margin: 0 auto;
+    width: 1024px;
+
+}
+
+.registration-form,
+.authorization-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid rgb(164, 188, 255);
+    margin-bottom: 30px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+input {
     width: 500px;
-    /* box-sizing: border-box;  */
-}
-
-h2{
-    text-align: center; 
+    padding: 15px;
     margin-bottom: 20px;
+    font-size: 18px;
+    border: 2px solid rgb(164, 188, 255);
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.registration-form{
-align-content: center;
+button {
+    width: 300px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgb(164, 188, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
 }
-input{
-   width: 300px;
- padding: 5px;
- margin-bottom: 5px;
-border: 2px solid pink;
-}
-button{
- width: 150px;
-margin-top: 15px;
-background-color: rgb(255, 224, 224);
-padding: 5px;
-border: 2px solid pink;
-border-radius: 10px;
 
+button:hover {
+    background-color: rgb(183, 201, 252);
 }
-form{ 
+
+.reg {
     display: flex;
     flex-direction: column;
-   
-} 
+    align-items: center;
+}
+
+.authZ {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+.application_page {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(164, 188, 255);
+}
+
+.userName {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.logout-btn {
+    width: auto;
+    padding: 10px 30px;
+    background-color: rgb(164, 188, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.logout-btn:hover {
+    background-color: rgb(183, 201, 252);
+}
+
+.title-statement {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-statement h2 {
+    margin-left: 350px;
+}
+
+
+.add-statement {
+    width: auto;
+    padding: 15px 30px;
+    background-color: rgb(164, 188, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.add-statement:hover {
+    background-color: rgb(183, 201, 252);
+}
+
+
+
+
+.container-statements {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid rgb(164, 188, 255);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 18px;
+        }
+        
+        th {
+            background-color: rgb(164, 188, 255);
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid rgb(140, 165, 230);
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+
+
+
+
+
+
+
+.title-page {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 0;
+    color: #333;
+
+}
+
+
+.title-container {
+    margin-bottom: 200px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column-reverse;
+}
+
+.title-container button {
+    width: 150px;
+    padding: 10px 20px;
+    background-color: rgb(164, 188, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.title-container button a {
+    text-decoration: none;
+    color: black;
+}
+
+.create_statement {
+    margin: 0 auto;
+    width: 1024px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column
+}
+
+.form-create-statement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid rgb(164, 188, 255);
+}
+
+.title-page {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.form-create-statement input {
+    width: 500px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border: 2px solid rgb(164, 188, 255);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.push-statement {
+    width: 300px;
+    padding: 20px;
+    background-color: rgb(164, 188, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.push-statement:hover {
+    background-color: rgb(183, 201, 252);
+}
+
+.gos-znak,
+.description {
+    margin-top: 10px;
+}
+
+
+
+

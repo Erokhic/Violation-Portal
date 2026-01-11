@@ -59,8 +59,9 @@ if (next_btn) {
 if(reg_btn) {
    reg_btn.addEventListener('click', (e) => {
     e.preventDefault()
-    flag = true
+   let flag = true
        
+
 
 
     if (reg_login.value.trim() === '') {
@@ -68,7 +69,7 @@ if(reg_btn) {
         reg_login.style.backgroundColor = 'rgb(255, 171, 171)'
         flag = false
     } else {
-        reg_login.style.borderColor = 'pink'
+        reg_login.style.borderColor = 'rgb(183, 201, 252)'
     }
 
     if (reg_password.value.trim() === '') {
@@ -82,7 +83,7 @@ if(reg_btn) {
         flag = false
     }
     else {
-        reg_password.style.borderColor = 'pink'
+        reg_password.style.borderColor = 'rgb(183, 201, 252)'
     }
 
     if (reg_fio.value.trim() === '') {
@@ -90,7 +91,7 @@ if(reg_btn) {
         reg_fio.style.backgroundColor = 'rgb(255, 171, 171)'
         flag = false
     } else {
-        reg_fio.style.borderColor = 'pink'
+        reg_fio.style.borderColor = 'rgb(183, 201, 252)'
     }
 
 
@@ -105,7 +106,7 @@ if(reg_btn) {
         flag = false
 
     } else {
-        reg_tel.style.borderColor = 'pink'
+        reg_tel.style.borderColor = 'rgb(183, 201, 252)'
     }
 
 
@@ -117,7 +118,7 @@ if(reg_btn) {
         alert('Введите правильную почту, используя спецзнак (@)')
         flag = false
     } else {
-        reg_email.style.borderColor = 'pink'
+        reg_email.style.borderColor = 'rgb(183, 201, 252)'
     }
 
 
