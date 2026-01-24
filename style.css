@@ -131,6 +131,7 @@ button:hover {
 
 
 .container-statements {
+width: 1300px;
             background-color: white;
             padding: 40px;
             border-radius: 10px;
@@ -138,7 +139,7 @@ button:hover {
         }
         
         table {
-            width: 100%;
+            width: 1300px;
             border-collapse: collapse;
             font-size: 18px;
         }
@@ -154,13 +155,6 @@ button:hover {
             padding: 15px;
             border-bottom: 1px solid #ddd;
         }
-
-
-
-
-
-
-
 
 
 .title-page {
