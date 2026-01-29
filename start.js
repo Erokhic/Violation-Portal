@@ -258,11 +258,10 @@ if (authZ_btn) {
         }
     })
 }
-document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function () {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    
     if (currentUser && currentUser.login === 'admin') {
-       
         if (registration_form) registration_form.style.display = 'none'
         if (authorization_form) authorization_form.style.display = 'none'
         if (admin_panel) {
@@ -271,8 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 })
-
-
 
 
 
@@ -294,12 +291,21 @@ function createAdminPanel() {
         }
     })
     loadAllStatements()
+
 }
 
 
 function loadAllStatements() {
     const statements = JSON.parse(localStorage.getItem('statements')) || []
     const users = JSON.parse(localStorage.getItem('users')) || []
+
+    const STATUS = JSON.parse(localStorage.getItem('STATUS')) || {
+        new: 'новая',
+        approved: 'принята',
+        rejected: 'отклонена'
+    };
+
+
     table.innerHTML = `
         <tr>
         <th>ФИО подавшего</th>
@@ -309,41 +315,44 @@ function loadAllStatements() {
         <th>Статус</th>
         </tr> 
     `
+ window.statusChanges = []
+
 
     statements.forEach(statement => {
         const user = users.find(u => u.login === statement.userId)
 
         if (user) {
-            const statementId = statement.id || index
-const STATUS = JSON.parse(localStorage.getItem('STATUS')) || {
-    new: 'новая',
-    approved: 'принята',
-    rejected: 'отклонена'
-};
+            const statementId = statement.id || '0'
+
             table.innerHTML += `
-    <tr>
- <td>${user.fio}</td>
-    <td>${statement.description}</td>
-    <td>${statement.gosZnak}</td>
-    <td>${statement.violation_date}</td>
-    <td>
-     <select onchange="changeStatus(${statementId}, this.value )">
-        <option ${statement.status === 'new' ? 'selected' : ''}> ${STATUS.new}</option>
-        <option ${statement.status === 'approved' ? 'selected' : ''}> ${STATUS.approved}</option>
+        <tr>
+        <td>${user.fio}</td>
+        <td>${statement.description}</td>
+        <td>${statement.gosZnak}</td>
+        <td>${statement.violation_date}</td>
+        <td>
+        <select onchange="changeStatus('${statementId}' , this.value)">
+        <option ${statement.status === 'new' ? 'selected' : ''}>${STATUS.new}</option>
+        <option ${statement.status === 'approved' ? 'selected' : ''}>${STATUS.approved}</option>
         <option ${statement.status === 'rejected' ? 'selected' : ''}>${STATUS.rejected}</option>
-    </select>
-    </td>
-    </tr>
-    `
+        </select>
+        </td>
+        </tr>
+        `
         }
 
     });
+
+// const saveBtn = document.getElementById('.saveBtn')
+//    saveBtn.addEventListener('click', (e) => {
+//     e.preventDefault()
+
 }
 
 function changeStatus(id, newStatus) {
     let statements = JSON.parse(localStorage.getItem('statements')) || []
-    let statement = statements.find(s => s.id === id)
-if(!statement) return
+    let statement = statements.find(s => s.id === String(id))
+    if (!statement) return
     if (statement) {
         statement.status = newStatus
         localStorage.setItem('statements', JSON.stringify(statements))
