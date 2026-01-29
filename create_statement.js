@@ -75,12 +75,12 @@ push_statement.addEventListener('click', (e) => {
     } else {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
-        const STATUS = {
-            new: 'new',
-            in_progress : 'in_progress',
-            approved : 'approved',
-            rejected : 'rejected'
-        }
+
+localStorage.setItem('STATUS', JSON.stringify({
+    new: 'новая',
+    approved: 'принята',
+    rejected: 'отклонена'
+}));
 
         const statement = {
             idUser: Date.now(),

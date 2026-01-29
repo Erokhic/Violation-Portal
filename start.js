@@ -1,3 +1,4 @@
+
 const registration_form = document.querySelector('.registration-form')
 const reg_login = document.querySelector('.reg-login')
 const reg_password = document.querySelector('.reg-password')
@@ -24,12 +25,18 @@ const table = document.querySelector('.table')
 let users = JSON.parse(localStorage.getItem('users')) || []
 let flag = true
 
+
+
 admin_panel.style.display = 'none'
 
 const admin = {
     login: "admin",
-    password: "password"
+    password: "password",
+    fio: 'Админович',
+    tel: '88005553535',
+    email: 'admin@mail.ru'
 };
+
 
 
 
@@ -150,8 +157,6 @@ if (reg_btn) {
                 email: reg_email.value.trim()
             }
 
-
-
             const uniq = users.some(u => u.login === reg_login.value.trim())
             if (uniq) {
                 alert('Пользователь с таким логином уже существует')
@@ -209,7 +214,6 @@ if (authZ_btn) {
                 localStorage.setItem('currentUser', JSON.stringify(admin))
                 alert('Приветствуем Вас в панеле администратора')
                 createAdminPanel()
-
                 return
             }
             const foundUser = users.find(user =>
@@ -299,20 +303,23 @@ function loadAllStatements() {
     table.innerHTML = `
         <tr>
         <th>ФИО подавшего</th>
-          <th>Описание нарушения</th>
+        <th>Описание нарушения</th>
         <th>Гос-номер авто</th>
         <th>Дата</th>
         <th>Статус</th>
         </tr> 
     `
 
-
-
     statements.forEach(statement => {
         const user = users.find(u => u.login === statement.userId)
 
         if (user) {
             const statementId = statement.id || index
+const STATUS = JSON.parse(localStorage.getItem('STATUS')) || {
+    new: 'новая',
+    approved: 'принята',
+    rejected: 'отклонена'
+};
             table.innerHTML += `
     <tr>
  <td>${user.fio}</td>
@@ -321,9 +328,9 @@ function loadAllStatements() {
     <td>${statement.violation_date}</td>
     <td>
      <select onchange="changeStatus(${statementId}, this.value )">
-        <option ${statement.status === 'new' ? 'selected' : ''}>new</option>
-        <option ${statement.status === 'approved' ? 'selected' : ''}>approved</option>
-        <option ${statement.status === 'rejected' ? 'selected' : ''}>rejected</option>
+        <option ${statement.status === 'new' ? 'selected' : ''}> ${STATUS.new}</option>
+        <option ${statement.status === 'approved' ? 'selected' : ''}> ${STATUS.approved}</option>
+        <option ${statement.status === 'rejected' ? 'selected' : ''}>${STATUS.rejected}</option>
     </select>
     </td>
     </tr>
@@ -336,7 +343,7 @@ function loadAllStatements() {
 function changeStatus(id, newStatus) {
     let statements = JSON.parse(localStorage.getItem('statements')) || []
     let statement = statements.find(s => s.id === id)
-
+if(!statement) return
     if (statement) {
         statement.status = newStatus
         localStorage.setItem('statements', JSON.stringify(statements))
